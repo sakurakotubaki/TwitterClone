@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:twitter_clone/model/account.dart';
 import 'package:twitter_clone/model/post.dart';
+import 'package:twitter_clone/view/time_line/post_page.dart';
 
 class TimeLinePage extends StatefulWidget {
   const TimeLinePage({Key? key}) : super(key: key);
@@ -90,7 +91,7 @@ class _TimeLinePageState extends State<TimeLinePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-
+          Navigator.push(context, MaterialPageRoute(builder: (context) => PostPage()));
         },
         child: Icon(Icons.chat_bubble_outline),
       ),
