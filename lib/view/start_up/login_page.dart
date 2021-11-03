@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:twitter_clone/view/screen.dart';
+import 'package:twitter_clone/view/start_up/create_account_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -53,6 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(color: Colors.blue),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => CreateAccountPage()));
                           print('アカウントを作成');
                         }),
                 ]),
