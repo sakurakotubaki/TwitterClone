@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:twitter_clone/view/time_line/time_line_page.dart';
-
+import 'package:twitter_clone/view/screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: TimeLinePage(),
+      home: Screen(),
     );
   }
 }

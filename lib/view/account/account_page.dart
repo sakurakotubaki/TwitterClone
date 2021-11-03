@@ -10,6 +10,15 @@ class AccountPage extends StatefulWidget {
 class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Column(
+        children: [
+          Container(
+            color: Colors.red,
+            height: 200,
+          ),
+        ],
+      ),
+    );
   }
 }
