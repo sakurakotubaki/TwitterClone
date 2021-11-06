@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:twitter_clone/model/account.dart';
 import 'package:twitter_clone/model/post.dart';
+import 'package:twitter_clone/utilits/authentication.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -12,18 +13,7 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
-  Account myAccount = Account(
-      id: '1',
-      name: 'Flutterラボ',
-      selfIntroduction: 'こんにちは',
-      userId: 'flutter_labo',
-      imagePath:
-          'https://yt3.ggpht.com/ngVd2-zv5o3pGUCfiVdZXCHhnq_g1Lo1Y8DbrmB9O8G7DG0IWUQJgsacqsI_LRvZE8JTsbQIuQ=s900-c-k-c0x00ffffff-no-rj',
-      // createdTime: DateTime.now(),
-      // updatedTime: DateTime.now());
-      // エラー出たので、Timestamp.now(),に変更
-      createdTime: Timestamp.now(),
-      updatedTime: Timestamp.now());
+  Account myAccount = Authentication.myAccount!;
 
   List<Post> postList = [
     Post(

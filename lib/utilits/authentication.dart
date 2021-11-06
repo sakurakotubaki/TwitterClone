@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:twitter_clone/model/account.dart';
 
 class Authentication {
   static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   static User? currentFirebaseUser;
+  static Account? myAccount;
 
   static Future<dynamic> signUp(
       {required String email, required String pass}) async {
@@ -29,7 +31,7 @@ class Authentication {
       );
       currentFirebaseUser = _result.user;
       print('authサインイン完了');
-      return true;
+      return _result;
     } on FirebaseAuthException catch (e) {
       print('authサインインエラー$e');
       return false;
