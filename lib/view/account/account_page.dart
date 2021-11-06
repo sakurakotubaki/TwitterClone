@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:twitter_clone/model/account.dart';
@@ -19,13 +20,13 @@ class _AccountPageState extends State<AccountPage> {
     Post(
         id: '1',
         content: '初めまして',
-        postActionId: '1',
-        createdTime: DateTime.now()),
+        postAccountId: '1',
+        createdTime: Timestamp.now()),
     Post(
         id: '2',
         content: '初めまして２かい',
-        postActionId: '1',
-        createdTime: DateTime.now()),
+        postAccountId: '1',
+        createdTime: Timestamp.now()),
   ];
 
   @override
@@ -127,7 +128,7 @@ class _AccountPageState extends State<AccountPage> {
                                               Text('@${myAccount.userId}', style: TextStyle(color: Colors.grey),),
                                             ],
                                           ),
-                                          Text(DateFormat('M/d/yy').format(postList[index].createdTime!)),
+                                          Text(DateFormat('M/d/yy').format(postList[index].createdTime!.toDate())),
                                         ],
                                       ),
                                       Text(postList[index].content)

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:twitter_clone/model/post.dart';
+import 'package:twitter_clone/utils/authentication.dart';
+import 'package:twitter_clone/utils/firestore/posts.dart';
 
 class PostPage extends StatefulWidget {
   const PostPage({Key? key}) : super(key: key);
@@ -8,7 +11,7 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-  TextEditingController controller = TextEditingController();
+  TextEditingController contentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +28,21 @@ class _PostPageState extends State<PostPage> {
         child: Column(
           children: [
             TextField(
-              controller: controller,
+              controller: contentController,
             ),
             SizedBox(height: 20,),
             ElevatedButton(
-                onPressed: () {
-
+                onPressed: () async {
+                  if(contentController.text.isNotEmpty) {
+                    Post newPost = Post(
+                      content: contentController.text,
+                      postAccountId: Authentication.myAccount!.id,
+                    );
+                    var result = await PostFirestore.addPost(newPost);
+                    if(result == true) {
+                      Navigator.pop(context);
+                    }
+                  }
                 },
               child: Text('投稿')
             )
