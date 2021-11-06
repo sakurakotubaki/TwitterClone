@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:twitter_clone/utilits/authentication.dart';
-import 'package:twitter_clone/utilits/firestore/users.dart';
+import 'package:twitter_clone/utils/authentication.dart';
+import 'package:twitter_clone/utils/firestore/users.dart';
 import 'package:twitter_clone/view/screen.dart';
 import 'package:twitter_clone/view/start_up/create_account_page.dart';
 

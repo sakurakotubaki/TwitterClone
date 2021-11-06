@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:twitter_clone/model/account.dart';
-import 'package:twitter_clone/utilits/authentication.dart';
+import 'package:twitter_clone/utils/authentication.dart';
 
 class UserFirestore {
   static final _firestoreInstance = FirebaseFirestore.instance;
@@ -46,7 +46,25 @@ class UserFirestore {
       print('ユーザー取得完了');
       return true;
     } on FirebaseException catch (e) {
-      print('ユーザー取得エラー');
+      print('ユーザー取得エラー:$e');
+      return false;
+    }
+  }
+
+  // アカウントを更新するメソッド
+  static Future<dynamic> updateUser(Account updateAccount) async {
+    try {
+    await users.doc(updateAccount.id).update({
+      'name': updateAccount.name,
+      'image_path': updateAccount.imagePath,
+      'user_id': updateAccount.userId,
+      'selfIntroduction': updateAccount.selfIntroduction,
+      'update_time': Timestamp.now()
+    });
+      print('ユーザー情報の登録完了');
+      return true;
+    } on FirebaseException catch (e) {
+      print('ユーザー情報の登録エラー:$e');
       return false;
     }
   }

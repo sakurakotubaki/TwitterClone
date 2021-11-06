@@ -1,9 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:twitter_clone/model/account.dart';
 import 'package:twitter_clone/model/post.dart';
-import 'package:twitter_clone/utilits/authentication.dart';
+import 'package:twitter_clone/utils/authentication.dart';
+import 'package:twitter_clone/view/account/edit_account_page.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -69,7 +69,15 @@ class _AccountPageState extends State<AccountPage> {
                               ),
                             ],
                           ),
-                          OutlinedButton(onPressed: () {}, child: Text('編集'))
+                          OutlinedButton(onPressed: () async {
+                            // awaitするとNavigator.pop(context, true)のtrueが帰ってくる
+                            var result = await Navigator.push(context, MaterialPageRoute(builder: (context) => EditAccountPage()));
+                            if(result == true) {
+                              setState(() {
+                                myAccount = Authentication.myAccount!;
+                              });
+                            }
+                          }, child: Text('編集'))
                         ],
                       ),
                       SizedBox(height: 15),
