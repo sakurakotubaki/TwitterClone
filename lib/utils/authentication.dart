@@ -37,4 +37,9 @@ class Authentication {
       return false;
     }
   }
+
+  // ログアウトのメソッド(これ書くだけでできる)
+  static Future<void> signOut() async {
+    await _firebaseAuth.signOut();
+  }
 }

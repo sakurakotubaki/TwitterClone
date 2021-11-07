@@ -7,6 +7,7 @@ import 'package:twitter_clone/utils/authentication.dart';
 import 'package:twitter_clone/utils/firestore/users.dart';
 import 'package:twitter_clone/utils/function_utlils.dart';
 import 'package:twitter_clone/utils/widget_utils.dart';
+import 'package:twitter_clone/view/start_up/login_page.dart';
 
 class EditAccountPage extends StatefulWidget {
   @override
@@ -116,6 +117,23 @@ class _EditAccountPageState extends State<EditAccountPage> {
                     }
                   },
                   child: Text('更新')
+              ),
+              SizedBox(height: 50),
+              // ログアウトボタン
+              ElevatedButton(
+                  onPressed: () {
+                    Authentication.signOut();
+                    // ログイン画面に戻る処理
+                    while(Navigator.canPop(context)) {
+                      // popできる状態ならpopする
+                      Navigator.pop(context);
+                    }
+                    // popできないときの処理(そのときに表示されている画面破棄して処理)
+                    Navigator.pushReplacement(context, MaterialPageRoute(
+                        builder: (context) => LoginPage()
+                    ));
+                  },
+                  child: Text('ログアウト')
               )
             ],
           ),
