@@ -134,7 +134,27 @@ class _EditAccountPageState extends State<EditAccountPage> {
                     ));
                   },
                   child: Text('ログアウト')
-              )
+              ),
+              SizedBox(height: 50),
+              // アカウント削除ボタン
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.red
+                ),
+                  onPressed: () {
+                    UserFirestore.deleteUser(myAccount.id);
+                    Authentication.deleteAuth();
+                    while(Navigator.canPop(context)) {
+                      // popできる状態ならpopする
+                      Navigator.pop(context);
+                    }
+                    // popできないときの処理(そのときに表示されている画面破棄して処理)
+                    Navigator.pushReplacement(context, MaterialPageRoute(
+                        builder: (context) => LoginPage()
+                    ));
+                  },
+                  child: Text('アカウント削除')
+              ),
             ],
           ),
         ),

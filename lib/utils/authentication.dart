@@ -42,4 +42,10 @@ class Authentication {
   static Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
+
+  // アカウントを削除するメソッド
+  static Future<void> deleteAuth() async {
+    await currentFirebaseUser!.delete();
+  }
+
 }

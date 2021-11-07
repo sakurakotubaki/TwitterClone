@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:twitter_clone/model/account.dart';
 import 'package:twitter_clone/utils/authentication.dart';
+import 'package:twitter_clone/utils/firestore/posts.dart';
 
 class UserFirestore {
   static final _firestoreInstance = FirebaseFirestore.instance;
@@ -92,5 +93,11 @@ class UserFirestore {
       print('投稿ユーザーの情報取得エラー:$e');
       return null;
     }
+  }
+
+  // ユーザーを消す処理
+static Future<dynamic> deleteUser(String accountId) async {
+    users.doc(accountId).delete();
+    PostFirestore.deletePosts(accountId);
   }
 }
