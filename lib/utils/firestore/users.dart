@@ -39,8 +39,8 @@ class UserFirestore {
         userId: data['user_id'],
         selfIntroduction: data['selfIntroduction'],
         imagePath: data['image_path'],
-        createdTime: data['created_Time'],
-        updatedTime: data['updated_Time']
+        createdTime: data['created_time'],
+        updatedTime: data['updated_time']
       );
       Authentication.myAccount = myAccount;
       print('ユーザー取得完了');
@@ -66,6 +66,31 @@ class UserFirestore {
     } on FirebaseException catch (e) {
       print('ユーザー情報の登録エラー:$e');
       return false;
+    }
+  }
+
+  static Future<Map<String, Account>?> getPostUserMap(List<String> accountIds) async {
+    Map<String, Account> map = {};
+    try {
+      await Future.forEach(accountIds, (String accountId) async {
+        var doc = await users.doc(accountId).get();
+        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+        Account postAccount = Account(
+          id: accountId,
+          name: data['name'],
+          userId: data['user_id'],
+          imagePath: data['image_path'],
+          selfIntroduction: data['selfIntroduction'],
+          createdTime: data['created_time'],
+          updatedTime: data['updated_time']
+        );
+        map[accountId] = postAccount;
+      });
+      print('投稿ユーザーの情報取得完了');
+      return map;
+    } on FirebaseException catch(e) {
+      print('投稿ユーザーの情報取得エラー:$e');
+      return null;
     }
   }
 }
